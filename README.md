@@ -1,87 +1,63 @@
-📊 Sales Pulse — Actionable Tableau + Salesforce + Slack Analytics Platform
+🌟 # Sales Pulse — Actionable Tableau + Salesforce + Slack Platform
 
-Sales Pulse is a full-stack web application that transforms Tableau dashboards into an actionable workflow engine.
-It embeds Tableau visualizations into a modern React web app, allows users to trigger Salesforce actions, sends automated Slack notifications, and maintains a full audit trail of all actions.
+Sales Pulse is a full-stack analytics-to-action web application that embeds Tableau dashboards inside a modern React app and adds action buttons, Salesforce automation, Slack alerts, and complete audit logging.
 
-Built for hackathons and enterprise analytics use cases, Sales Pulse showcases the future of AI-powered, agentic analytics.
+It demonstrates the future of agentic, actionable analytics for enterprise teams.
 
-🚀 Features
-🔹 1. Embedded Tableau Dashboards
+⭐ ## Features
+🔹 Embedded Tableau Dashboards
 
-Interactive Tableau dashboards rendered inside a React web app
+Completely interactive
 
-Account list, account details, trends, and risk scores
+Displays Accounts, KPIs, Risk scores, Trends
 
-Clickable marks update contextual insights and actions
+Updates context automatically when selecting a row
 
-🔹 2. Actionable Insights
+🔹 Actionable Insights Panel
 
-A custom sidebar + Tableau Extension shows:
+Shows selected Account
 
-Selected Account details
+Displays AI/rule-based recommendation
 
-AI / rule-based recommendation
+Provides explainability reasons
 
-Explainability for every recommendation
+🔹 Salesforce Integration
 
-🔹 3. Salesforce Integration
+Create Tasks
 
-Backend triggers:
+Update Cases
 
-Task creation
+Trigger Agentforce automation
 
-Case updates
+🔹 Slack Notifications
 
-Agentforce automations (if enabled)
+Auto-post action summaries
 
-Supports OAuth 2.0 with Salesforce.
+Deep link back to dashboard
 
-🔹 4. Slack Integration
+🔹 Audit Trail
 
-Automatically posts summaries to Slack channel
+Logs every action
 
-Includes actionable buttons & deep links
+View audit history in Audit Page
 
-🔹 5. Complete Audit Logging
+Stores payloads, metadata, timestamps
 
-Logs all actions with:
+🔹 Mock Mode
 
-Account ID
+Works without Salesforce or Slack
 
-User ID
+Ideal for hackathons/demos
 
-Action type
-
-Reason
-
-Notes
-
-Payload sent
-
-Result returned
-
-Timestamp
-
-🔹 6. Mock Mode for Demo
-
-No Salesforce or Slack? No problem.
-Enable DEMO_MODE=true and app simulates all actions for easy offline demos.
-
-🔹 7. Modern Full-Stack Architecture
-
-Frontend: React + Vite
-
-Backend: Node.js + Express
-
-Extensions: Tableau Extensions API
-
-DB: SQLite (local), Postgres (production)
-
-📁 Project Folder Structure
+🗂️ ## Project Folder Structure (Vertical Tree View)
 sales-pulse/
+│
 ├── README.md
+│
 ├── tableau/
-│   └── workbooks/              # Published dashboards or .twbx files
+│   └── workbooks/
+│       └── <tableau-dashboard.twbx>
+│
 ├── frontend/
 │   ├── index.html
 │   ├── package.json
@@ -96,11 +72,13 @@ sales-pulse/
 │       └── pages/
 │           ├── DashboardPage.jsx
 │           └── AuditPage.jsx
+│
 ├── extension/
 │   ├── index.html
 │   ├── manifest.json
 │   └── src/
 │       └── ExtensionUI.jsx
+│
 ├── backend/
 │   ├── package.json
 │   └── src/
@@ -114,29 +92,27 @@ sales-pulse/
 │           ├── salesforce.js
 │           ├── slack.js
 │           └── agentforce.js
+│
 ├── docs/
 │   ├── API_LIST.md
 │   ├── SETUP.md
 │   └── ARCHITECTURE.png
+│
 └── .github/
     └── workflows/
         └── deploy.yml
 
-🔧 Installation & Setup
-✅ 1. Clone the repository
+🔧 ## Installation & Setup
+1️⃣ Clone the Repository
 git clone https://github.com/<your-username>/sales-pulse.git
 cd sales-pulse
 
-🔐 Environment Variables (Frontend + Backend)
-
-Create a .env file in frontend:
-
-VITE_TABLEAU_URL=<your_tableau_dashboard_embed_url>
+🔐 ## Environment Variables
+📌 Frontend .env
+VITE_TABLEAU_URL=<your_tableau_embed_url>
 VITE_BACKEND_URL=http://localhost:4000
 
-
-Create a .env file in backend:
-
+📌 Backend .env
 PORT=4000
 DEMO_MODE=true
 
@@ -144,7 +120,6 @@ DEMO_MODE=true
 SF_CLIENT_ID=
 SF_CLIENT_SECRET=
 SF_REDIRECT_URI=http://localhost:4000/auth/salesforce/callback
-SF_LOGIN_URL=https://login.salesforce.com
 
 # Slack
 SLACK_BOT_TOKEN=
@@ -153,206 +128,146 @@ SLACK_CHANNEL_ID=
 # Database
 DATABASE_URL=sqlite:./salespulse.db
 
-# JWT
-JWT_SECRET=supersecretkey
+# JWT Secret
+JWT_SECRET=supersecret
 
-▶️ Running the project locally
-1. Start Backend
+▶️ ## Run the Application Locally
+2️⃣ Start Backend
 cd backend
 npm install
 npm start
 
 
-Backend runs on:
-👉 http://localhost:4000
+Backend → http://localhost:4000
 
-2. Start Frontend
+3️⃣ Start Frontend
 cd frontend
 npm install
 npm run dev
 
 
-Frontend runs on:
-👉 http://localhost:5173
+Frontend → http://localhost:5173
 
-3. Running the Tableau Extension
-
-Serve the /extension folder statically:
-
+4️⃣ Start Tableau Extension (optional)
 cd extension
 npx http-server .
 
 
-Then load this extension in Tableau Desktop or Tableau Cloud.
+Use URL in Tableau Desktop or Tableau Cloud Extension Manager.
 
-🌍 Deployment Instructions
-🚀 Frontend → Deploy on Vercel
+🌍 ## Deployment Guide
+🚀 Frontend → Vercel
 
-Go to https://vercel.com
-
-Import GitHub repository
+Import GitHub repo
 
 Set build command:
 
 npm run build
 
 
-Set output directory:
+Output directory:
 
 dist
 
 
-Add frontend env variables in Vercel dashboard
+Add environment variables
 
-🚀 Backend → Deploy on Render.com / Railway.app
+Deploy 🎉
+
+🚀 Backend → Render / Railway / Replit
 
 Create new Web Service
 
-Link GitHub repo
+Connect GitHub repo
 
-Set environment: Node.js
+Environment: Node.js
 
 Start command:
 
 npm start
 
 
-Add backend environment variables
+Add environment variables
 
-🚀 Tableau Workbooks
+Deploy 🎉
 
-You may:
+🖼️ ## Screenshot Placeholders
 
-Upload to Tableau Cloud, OR
+Add your screenshots here:
 
-Store .twbx in tableau/workbooks/
-
-🖼️ Screenshots (Add placeholders)
 Dashboard Embed
+![Dashboard](docs/dashboard.png)
 
-![Dashboard Screenshot](docs/dashboard.png)
-
-Sidebar with Recommendations
-
-![Sidebar Screenshot](docs/sidebar.png)
+Action Modal
+![ActionModal](docs/actionmodal.png)
 
 Audit Logs
+![Audit](docs/audit.png)
 
-![Audit Screenshot](docs/audit.png)
+📘 ## API Documentation
+🔹 POST /api/action
 
-📘 API Documentation
-POST /api/action
+Trigger Salesforce/Agentforce/Slack action.
 
-Trigger an action (task creation, escalation, etc.)
+Request
 
-Request:
 {
-  "user_id": "123",
-  "account_id": "ACC-001",
+  "user_id": "001",
+  "account_id": "ACC-01",
   "action": "create_task",
   "notes": "Follow up",
-  "recommendation_reason": "High churn probability"
+  "recommendation_reason": "High churn risk"
 }
 
-Response:
+
+Response
+
 {
   "status": "ok",
   "action_id": "uuid",
   "result": "Task created"
 }
 
-GET /api/audit
+🔹 GET /api/audit
 
-Returns all actions with filters.
+Fetch list of all audit actions.
 
-Response:
-[
-  {
-    "action_id": "uuid",
-    "account_id": "ACC-001",
-    "user_id": "123",
-    "action": "create_task",
-    "timestamp": "2025-01-01",
-    "result": "success"
-  }
-]
+🔹 GET /api/audit/:id
 
-GET /api/audit/:id
+Fetch full details for one audit entry.
 
-Detailed audit record.
+🔹 OAuth Routes
 
-OAuth Routes
-GET /auth/salesforce
+/auth/salesforce
 
-Redirects user to Salesforce login page.
+/auth/salesforce/callback
 
-GET /auth/salesforce/callback
+🛡️ ## Security
 
-Handles OAuth and stores tokens.
+Secure OAuth token storage
 
-🧩 Tech Stack
-Frontend
+JWT-based route protection
 
-React + Vite
+Validation for all inputs
 
-Axios
+No secrets committed to repo
 
-Tableau JS SDK
+Mock mode protects sensitive API keys
 
-Backend
+🧪 ## Test Coverage
 
-Node.js + Express
+Backend unit tests using Jest
 
-Salesforce REST API
+Integration test: POST /api/action
 
-Slack Web API
+CI test workflow via GitHub Actions
 
-JWT Auth
+🌟 ## Future Improvements
 
-Database
+Add ML churn prediction
 
-SQLite (dev)
+Add Slack approval flows
 
-Postgres (prod)
+Add RLS-aware Tableau views
 
-🛡️ Security
-
-OAuth tokens are stored encrypted
-
-Environment variables not committed to repo
-
-All API endpoints validate JWT
-
-Sanitized inputs & schema validation
-
-Audit trail for every action invoked
-
-🧪 Tests
-
-Jest unit tests for backend routes
-
-Integration test for POST /api/action
-
-Smoke test for frontend build
-
-🌟 Future Improvements
-
-Add ML-based churn prediction model
-
-Multi-agent workflow automation via Agentforce
-
-Role-based UI with permissions
-
-Slack two-way approval flows
-
-🏁 Conclusion
-
-Sales Pulse demonstrates a complete analytics-to-action pipeline integrating:
-
-Tableau
-
-Salesforce
-
-Slack
-
-Full-stack web technologies
+Add multi-agent Agentforce orchestration
